@@ -66,3 +66,22 @@ Evaluation results (Recall): 0.4691358024691358
 
 * Note:
   * There are no results for tf-idf as they took long to run, but it passed the pytest and I ran on a small dataset.
+
+
+## Exact
+In exact, we can see that the precision is 100% while recall is very low, this is because only exact matches are taken. For example in Recall, many matches are not exact macthes, such as John and Jon. 
+
+We can see that the accuracy is misleading as the classes are imbalanced, f1 gives us a better understanding. Most classes are predicted to be 0, which is what the tsv had.
+
+
+## Jaccard
+
+testing different threshhold, we can see that 0.5 is the closest to the optimal threshhold. Resulting in the highest f1 score.
+
+## Levenshtein
+
+Levenshtein captures distance between characters, so it recognize s matches with different minor spellings. Compared to Jaccard, it achieves higher recall at threshold 0.5 but lower precision. 
+
+the results from training and testing are kind of similar, showing that the model is not overfitting. 
+
+All and all, Jaccard showed to be the best implementation, as it surprasses all other methods when the threshhold is 0.5, especially looking at the f1 accuracy. 

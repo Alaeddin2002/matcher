@@ -4,9 +4,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 class NameMatchScorer:
-    def __init__(self, name1, name2):
+    def __init__(self, name1, name2, threshold=0.5):
         self.name1 = name1
         self.name2 = name2
+        self.threshold = threshold
 
     def __str__(self):
         return f"{self.__class__.__name__}(name1='{self.name1}', name2='{self.name2}')"
@@ -50,8 +51,8 @@ class LevenshteinScorer(NameMatchScorer):
 
 
 class TfidfMatcher(NameMatchScorer):
-    def __init__(self, name1, name2, ngram_range=(1, 4)):
-        super().__init__(name1, name2)
+    def __init__(self, name1, name2, threshold=0.5, ngram_range=(1, 4)):
+        super().__init__(name1, name2, threshold)
 
         if not isinstance(ngram_range, tuple) or len(ngram_range) != 2:
             raise ValueError("ngram_range must be a tuple of length 2")
